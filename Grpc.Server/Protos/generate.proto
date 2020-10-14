@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option csharp_namespace = "Grpc.Server";
+
+package generate;
+
+service Generator {
+	rpc Generate (GenerateRequest) returns (GenerateReply);
+}
+
+message GenerateRequest {
+    uint32 passwordLength = 1;
+    Casing casing = 2;
+    bool useSpecials = 3;
+    bool useNumerics = 4;
+    string filter = 5;
+}
+
+message GenerateReply {
+	string generatedPassword = 1;
+}
+
+enum Casing {
+  MIXED = 0;
+  UPPERCASE = 1;
+  LOWERCASE = 2;
+}
